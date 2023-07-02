@@ -1,0 +1,68 @@
+:root
+  //global
+  --bg-transition: rgba(0, 0, 0, 0.8)
+  --img-width: 5184px
+  --img-height: 3456px
+
+  --screen-phone: 320px
+  --screen-phablet: 480px
+  --screen-tablet: 720px
+  --screen-min-desktop: 1080px
+  --screen-desktop: 1280px
+  --screen-large-desktop: 1500px
+  --screen-large: 1920px
+  --screen-wide: 2560px
+  --screen-thic: 3840px
+
+  --collection-img-zoomed-height-desktop: calc(var(--collection-img-zoomed-width-desktop)/1.5)
+
+  //phone
+  @include media(">tablet", "<=min-desktop")
+    --collection-img-width-desktop: 135px
+    --collection-img-height-desktop: 224px
+    --collection-img-zoomed-width-desktop: 450px
+    --collection-img-zoomed-height-desktop: 300px
+    --title-font-size: 4em
+
+  //desktop
+  // > 1080px
+  @include media(">min-desktop", "<=desktop")
+    --collection-img-width-desktop: 180px
+    --collection-img-height-desktop: 300px
+    --collection-img-zoomed-width-desktop: calc(0.58 * var(--screen-min-desktop))
+    --title-font-size: 4.2em
+    --arrows: 12px
+    --level: 4.2
+  // > 1280px
+  @include media(">desktop", "<=large-desktop")
+    --collection-img-width-desktop: 240px
+    --collection-img-height-desktop: 400px
+    --collection-img-zoomed-width-desktop: calc(0.58 * var(--screen-desktop))
+    --title-font-size: 5.4em
+    --arrows: 18px
+    --level: 5.4
+  // > 1500px
+  @include media(">large-desktop", "<=large")
+    --collection-img-width-desktop: 270px
+    --collection-img-height-desktop: 450px
+    --collection-img-zoomed-width-desktop: calc(0.58 * var(--screen-large-desktop))
+    --title-font-size: 6.6em
+    --arrows: 25px
+    --level: 6.6
+  // > 1920px
+  @include media(">large", "<=wide")
+    --collection-img-width-desktop: 300px
+    --collection-img-height-desktop: 500px
+    --collection-img-zoomed-width-desktop: calc(0.58 * var(--screen-large))
+    --title-font-size: 7.8em
+    --arrows: 30px
+    --level: 7.8
+  // > 2560px
+  @include media(">wide")
+    //collection
+    --collection-img-width-desktop: 420px
+    --collection-img-height-desktop: 700px
+    --collection-img-zoomed-width-desktop: calc(0.58 * var(--screen-wide))
+    --title-font-size: 9em
+    --arrows: 45px
+    --level: 9

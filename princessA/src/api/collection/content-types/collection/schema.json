@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "collections",
+  "info": {
+    "singularName": "collection",
+    "pluralName": "collections",
+    "displayName": "Collection",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titre": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Description": {
+      "type": "text",
+      "maxLength": 420
+    },
+    "Photo_principale": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Ordre": {
+      "type": "integer",
+      "unique": true,
+      "min": 1,
+      "required": true
+    },
+    "Oeuvres": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::oeuvre.oeuvre",
+      "mappedBy": "collection"
+    },
+    "Tag": {
+      "type": "string",
+      "default": "nom_de_collection",
+      "regex": "[A-Za-z0-9_]",
+      "required": true,
+      "unique": true
+    },
+    "Couleur_fond": {
+      "type": "string",
+      "regex": "rgb\\((\\d{1,3}), ?(\\d{1,3}), ?(\\d{1,3})\\)",
+      "default": "rgb(0, 0, 0)",
+      "required": true
+    },
+    "Couleur_texte": {
+      "type": "string",
+      "regex": "rgb\\((\\d{1,3}), ?(\\d{1,3}), ?(\\d{1,3})\\)",
+      "required": true,
+      "default": "rgb(0, 0, 0)"
+    }
+  }
+}

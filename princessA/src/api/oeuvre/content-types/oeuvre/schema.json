@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "oeuvres",
+  "info": {
+    "singularName": "oeuvre",
+    "pluralName": "oeuvres",
+    "displayName": "Oeuvre",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titre": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "Photo_principale": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Photos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Date_creation": {
+      "type": "date"
+    },
+    "Video": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "louable": {
+      "type": "boolean"
+    },
+    "collection": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::collection.collection",
+      "inversedBy": "Oeuvres"
+    },
+    "Tag": {
+      "type": "string",
+      "regex": "[A-Za-z0-9_]",
+      "required": true,
+      "unique": true
+    }
+  }
+}

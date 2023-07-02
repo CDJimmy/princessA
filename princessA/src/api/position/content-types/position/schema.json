@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "positions",
+  "info": {
+    "singularName": "position",
+    "pluralName": "positions",
+    "displayName": "Position",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titre": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Tag": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "Photos": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "Latitude": {
+      "type": "string",
+      "required": true,
+      "default": "1.1234",
+      "regex": "-?\\d{1,3}.\\d+"
+    },
+    "Longitude": {
+      "type": "string",
+      "default": "5.6789",
+      "regex": "-?\\d{1,3}.\\d+",
+      "required": true
+    },
+    "Pays": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::pays.pays",
+      "inversedBy": "Positions"
+    }
+  }
+}

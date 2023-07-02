@@ -1,0 +1,733 @@
+@import 'colors'
+@import 'include_media'
+@import 'animations'
+@import 'variables.module'
+
+@function multiple-box-shadow ($n) 
+  $value: '#{random(2000)}px #{random(2000)}px #FFF'
+  @for $i from 2 through $n
+    $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF'
+  @return unquote($value)
+
+$shadows-small:  multiple-box-shadow(700)
+$shadows-medium: multiple-box-shadow(200)
+$shadows-big:    multiple-box-shadow(100)
+
+
+//:root
+//  @include media("<=desktop")
+//    --collection-img-width-desktop: 200px
+//    --collection-img-height-desktop: 400px
+//    --collection-img-zoomed-width-desktop: 800px
+//    --collection-img-zoomed-height-desktop: 613px
+//  @include media(">desktop")
+//    --collection-img-width-desktop: 300px
+//    --collection-img-height-desktop: 500px
+//    --collection-img-zoomed-width-desktop: 1000px
+//    --collection-img-zoomed-height-desktop: 767px
+
+
+.arrow 
+  border: solid black
+  border-width: 0 calc(var(--arrows)*0.4) calc(var(--arrows)*0.4) 0
+  display: inline-block
+  padding: var(--arrows)
+  height: 0px
+  margin-top: calc(var(--collection-img-height-desktop)/2)
+.arrow.right
+  transform: rotate(-45deg)
+  -webkit-transform: rotate(-45deg)
+  position: absolute
+  right: 2% 
+.arrow.left 
+  transform: rotate(135deg)
+  -webkit-transform: rotate(135deg)
+  position: absolute
+  left: 2% 
+
+
+html, body
+  padding: 0
+  margin: 0
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif
+  background-color: $primary-bg-color
+  color: $primary-font-color
+body
+  overflow-x: hidden
+a
+  color: inherit
+  text-decoration: none
+
+h1
+  padding: 0.2em 0.5em
+  margin: 0
+  font-family: 'Green Hostel'
+  font-style: normal
+  font-weight: normal
+  font-size: var(--title-font-size)
+
+h2
+  font-size: calc(var(--title-font-size) * 0.85)
+h3
+  font-size: calc(var(--title-font-size) * 0.70)
+h4
+  font-size: calc(var(--title-font-size) * 0.55)
+h5
+  font-size: calc(var(--title-font-size) * 0.40)
+h6
+  font-size: calc(var(--title-font-size) * 0.25)
+
+
+
+header
+  nav
+    padding: 0.8em
+    margin: auto
+    justify-content: space-evenly
+    display: flex
+    a
+      font-size: 2em
+
+section
+  @include media("<tablet")
+    height: 1600px
+  @include media(">=tablet", "<=wide")
+    height: 1200px
+  @include media(">wide")
+    height: 1600px
+  &:nth-child(2)
+    @include media("<phone")
+      background-color: #e0edf4
+    @include media(">phone", "<=tablet")
+      background-color: #c4d8e5
+    @include media(">tablet", "<=desktop")
+      background-color: #abc1d4
+    @include media(">desktop", "<=large")
+      background-color: #86a3be
+    @include media(">large", "<=thic")
+      background-color: #6b8ba9
+  &:nth-child(3)
+    @include media("<phone")
+      background-color: #e0f4f1
+    @include media(">phone", "<=tablet")
+      background-color: #c4e5e2
+    @include media(">tablet", "<=desktop")
+      background-color: #abd4d3
+    @include media(">desktop", "<=large")
+      background-color: #86bebd
+    @include media(">large", "<=thic")
+      background-color: #6ba9a8
+  &:nth-child(4)
+    @include media("<phone")
+      background-color: #f4e7e0
+    @include media(">phone", "<=tablet")
+      background-color: #e5d1c4
+    @include media(">tablet", "<=desktop")
+      background-color:	#d4beab
+    @include media(">desktop", "<=large")
+      background-color: #bea186
+    @include media(">large", "<=thic")
+      background-color: #a9896b
+  &:nth-child(5)
+    @include media("<phone")
+      background-color: #e0e3f4
+    @include media(">phone", "<=tablet")
+      background-color: #c4c8e5
+    @include media(">tablet", "<=desktop")
+      background-color:	#abadd4
+    @include media(">desktop", "<=large")
+      background-color: #8687be
+    @include media(">large", "<=thic")
+      background-color: #6b6ca9
+
+
+
+#section-video
+  animation: anim-unanim-darking 2s forwards ease-in-out
+  background-color: black
+  #video-display
+    cursor: default
+    position: absolute
+    top: 0
+    margin: 0
+    height: 100%
+    width: 100%
+    z-index: 10
+    #skip-video-arrow
+      position: absolute
+      bottom: 0
+      left: 50%
+      cursor: pointer
+      transform: scaleX(3)
+      &:hover > span
+        animation: anim-arrow-skip 2s infinite
+    #skip-video-arrow span
+        display: block
+        width: 2vw
+        height: 2vw
+        border-bottom: 0.7vw solid white
+        border-right: 0.7vw solid white
+        transform: rotate(45deg)
+    #skip-video-arrow span:nth-child(2)
+        animation-delay: -0.2s
+    #skip-video-arrow span:nth-child(3)
+        animation-delay: -0.4s
+
+  #logo-video
+    width: 100% 
+    height: 100%
+    > div
+      width: 100% 
+      height: 100%
+
+
+#section-world
+  @include media(">=min-desktop", "<desktop")
+    height: calc(var(--screen-min-desktop)/1.3)
+  @include media(">=desktop", "<large-desktop")
+    height: calc(var(--screen-desktop)/1.3)
+  @include media(">=large-desktop", "<large")
+    height: calc(var(--screen-large-desktop)/1.3)
+  @include media(">=large", "<wide")
+    height: calc(var(--screen-large)/1.3)
+  @include media(">=wide", "<thic")
+    height: calc(var(--screen-wide)/1.3)
+  @include media(">=thic")
+    height: calc(var(--screen-thic)/1.3)
+  .world-container 
+    overflow: hidden 
+  #world-close 
+    position: fixed 
+    z-index: 30 
+    width: 80px 
+    height: 80px 
+    background: #1b1b1b 
+    left: 0 
+    right: 0 
+    top: 0
+    margin-left: auto 
+    margin-right: auto 
+    overflow: hidden 
+    cursor: pointer
+    transform-origin: center 50% 0px
+    transform: matrix(0, 0, 0, 1, 0, 0)
+    &[data-open='true']
+      transform: matrix(1, 0, 0, 1, 0, 0)
+      transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+    &:hover
+      background: #fff
+      span
+        background: #000
+    span
+      display: block
+      position: absolute
+      width: 60px
+      height: 1px
+      background: #fff
+      top:0
+      bottom: 0
+      left: 0
+      right: 0
+      margin-left: auto
+      margin-right: auto
+      margin-top: auto
+      margin-bottom: auto
+      cursor: pointer
+      &:first-child
+        transform-origin: center 
+        transform: rotate(45deg) 
+      &:last-child
+        transform-origin: center 
+        transform: rotate(-45deg) 
+  #world-button-left
+    margin-left: 19vw
+  #world-button-right 
+    margin-left: 69vw
+  #world-button-left, #world-button-right 
+    width: 18%
+    height: 75px
+    margin-top: 30%
+    font-size: 3em
+    background: #1b1b1b
+    z-index: 20
+    overflow: hidden
+    font-family: 'Roboto', sans-serif
+    font-weight: 100
+    position: absolute
+    transform: skewX(-6deg)
+    //margin-top: auto
+    margin-bottom: auto
+    text-align: center
+    padding-top: 14px
+    transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+    cursor: pointer
+    -webkit-box-shadow: 0 0 25px 0 rgba(0,0,0,0.75)
+    -moz-box-shadow: 0 0 25px 0 rgba(0,0,0,0.75)
+    box-shadow: 0 0 25px 0 rgba(0,0,0,0.75)
+    &[data-open='false']
+      width: 0px
+      transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+    span
+      color: #fff
+      mix-blend-mode: difference
+      z-index: 20
+    &:before
+      content: ''
+      position: absolute
+      overflow: hidden
+      top: 50%
+      bottom: 0
+      left: 0
+      right: 0
+      width: 100%
+      z-index: -1
+      height: 0
+      background: #fff
+      color: #1b1b1b
+      transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+    &:hover
+      &:before
+        top: 0
+        height: 75px
+        padding-top: 14px
+    
+  .world-group 
+    position: absolute 
+    width: 50vw 
+    overflow: hidden 
+    z-index: 2
+    .world-child
+      position: relative 
+      width: 50vw 
+      background-attachment: fixed 
+      -webkit-background-size: cover 
+      -moz-background-size: cover 
+      -o-background-size: cover 
+      background-size: cover
+
+      //@include media("<phone")
+      //@include media(">phone", "<=phablet")
+      //@include media(">phablet", "<=tablet")
+      //@include media(">tablet", "<=min-desktop")
+      @include media(">=min-desktop", "<desktop")
+        height: calc(var(--screen-min-desktop)/1.5)
+      @include media(">=desktop", "<large-desktop")
+        height: calc(var(--screen-desktop)/1.5)
+      @include media(">=large-desktop", "<large")
+        height: calc(var(--screen-large-desktop)/1.5)
+      @include media(">=large", "<wide")
+        height: calc(var(--screen-large)/1.5)
+      @include media(">=wide", "<thic")
+        height: calc(var(--screen-wide)/1.5)
+      @include media(">=thic")
+        height: calc(var(--screen-thic)/1.5)
+
+
+    &#artist > .world-child
+      background-image: url('/images/Albane.JPG')
+      background-repeat:no-repeat
+      background-position: center center
+      
+    &#around
+      margin-left: 50vw
+      .world-child
+        > div
+          position: relative
+          @include media(">=min-desktop", "<desktop")
+            scale: 0.7
+            top: calc((((var(--screen-min-desktop)/1.5) - 750px)/2) - 80px)
+          @include media(">=desktop", "<large-desktop")
+            scale: 0.8
+            top: calc((((var(--screen-min-desktop)/1.5) - 750px)/2) - 80px)
+          @include media(">=large-desktop", "<large")
+            scale: 1
+            top: 0
+          @include media(">=large", "<wide")
+            scale: 1.2
+            top: calc((((var(--screen-large)/1.5) - 1000px)/2) - 80px)
+          @include media(">=wide", "<thic")
+            scale: 1.8
+            top: calc((((var(--screen-wide)/1.5) - 1000px)/2) - 80px)
+          @include media(">=thic")
+            scale: 2.4
+            top: calc((((var(--screen-thic)/1.5) - 1200px)/2) - 80px)
+          
+        background-position: center -50px
+        transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+        &[data-open='true']
+          background-image: url('/images/space2.jpg')
+        &[data-open='false']
+          background-image: url('/images/space.jpg')
+      #world-map
+        height: 1000px
+        width: 1000px
+        margin-left: calc(50% - 1000px /2)
+        position: relative
+        &[data-open='false']
+          opacity: 0
+        &[data-open='true']
+          opacity: 1
+          transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+      
+      #stars
+        display: none
+      #stars1
+        width: 1px
+        height: 1px
+        background: transparent
+        box-shadow: $shadows-small
+        animation: anim-star 50s linear infinite
+          
+        &:after
+          content: " "
+          position: absolute
+          top: 2000px
+          width: 1px
+          height: 1px
+          background: transparent
+          box-shadow: $shadows-small
+          
+      #stars2
+        width: 2px
+        height: 2px
+        background: transparent
+        box-shadow: $shadows-medium
+        animation: anim-star 100s linear infinite
+          
+        &:after
+          content: " "
+          position: absolute
+          top: 2000px
+          width: 2px
+          height: 2px
+          background: transparent
+          box-shadow: $shadows-medium
+          
+      #stars3
+        width: 3px
+        height: 3px
+        background: transparent
+        box-shadow: $shadows-big
+        animation: anim-star 150s linear infinite
+          
+        &:after
+          content: " "
+          position: absolute
+          top: 2000px
+          width: 3px
+          height: 3px
+          background: transparent
+          box-shadow: $shadows-big
+
+    #continents
+      display: none
+      position: absolute
+      top: 0
+      margin: 3%
+      background: #1b1b1b
+      width: 200px
+
+      transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+      -webkit-box-shadow: 0 0 25px 0 rgba(0,0,0,0.75)
+      -moz-box-shadow: 0 0 25px 0 rgba(0,0,0,0.75)
+      box-shadow: 0 0 25px 0 rgba(0,0,0,0.75)
+      ul
+        margin: 12px 0px 12px 0px
+        padding-left: 20px
+        list-style: none
+        cursor: default
+        transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+        &:hover
+          padding-left: 25px
+          background: #3b3b3b
+          transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+
+        .positions:hover
+          background: #fff
+          color: #1b1b1b
+
+          
+
+
+
+//
+/* SECTION ART */
+//
+
+#section-art
+  .img-click
+    position: absolute
+    z-index: -1
+    margin-top: 100px
+
+  #collection-popin
+    visibility: hidden
+    display: none
+    &.unselected
+      display: block
+      visibility: visible
+      width: 100%
+      height: 100%
+      position: fixed
+      z-index: 100
+      padding-left: 5%
+      top: 0
+      left: 0
+      margin: 0
+      animation: anim-unanim-darking 1s forwards ease-in-out
+      h3, h4, h6, .artwork
+        animation: 1s anim-desapear ease-out forwards
+      #collection-popin-img-title
+        animation: 1s anim-lineLeftReverse ease-out forwards
+    &.selected
+      display: block
+      animation: anim-darking 1s forwards ease-in-out
+      visibility: visible
+      width: 100%
+      height: 100%
+      position: fixed
+      z-index: 100
+      padding-left: 5%
+      top: 0
+      left: 0
+      margin: 0
+      #collection-popin-img
+        background-color: black
+        transition: ease-out 1s
+      #collection-popin-img-title
+        animation: 2s anim-lineLeft ease-out forwards
+      h3, h4, h6
+        animation: 5s anim-lineUp ease-out forwards
+      .artwork
+        animation: 8s anim-lineUp ease-out forwards
+        &:nth-child(2)
+          animation-duration: 10s
+        &:nth-child(3)
+          animation-duration: 12s
+        &:nth-child(4)
+          animation-duration: 14s
+        &:nth-child(5)
+          animation-duration: 16s
+          
+    #collection-popin-content
+      display: flex
+      width: 95%
+      height: 62%
+      #collection-popin-img
+      position: relative
+      cursor: default
+      height: var(--collection-img-zoomed-height-desktop)
+
+      #slider-play
+        position: absolute
+        width: 60px
+        height: 60px
+        bottom: 0px
+        margin-left: calc(var(--collection-img-zoomed-width-desktop)/2 - 60px)
+        z-index: 200
+        display: none
+        background: url('/images/animations/played.png') no-repeat
+        &.slide-active
+          display: block
+          &:hover
+            animation: 0.3s anim-play-pause steps(7) forwards !important
+            cursor: zoom-in
+
+      #grid-wrapper
+        &:hover ~ #slider-play
+          animation: 0.3s anim-play-pause steps(7) forwards
+        &:not(:hover) ~ #slider-play
+          animation: 0.3s anim-pause-play steps(7) forwards
+        &.zoomed:hover ~ #slider-play
+          display: none
+          
+        $container-size-y: var(--collection-img-zoomed-width-desktop)
+        $container-size-x: var(--collection-img-zoomed-height-desktop)
+        $grid-root-y: 15
+        $grid-root-x: 10
+        $zoom-factor: 2
+        $zoom-size-x: calc(#{$container-size-x} * #{$zoom-factor})
+        $zoom-size-y: calc(#{$container-size-y} * #{$zoom-factor})
+        $offset-x: calc(#{$zoom-size-x} - #{$container-size-x})
+        $offset-y: calc(#{$zoom-size-y} - #{$container-size-y})
+        $stepper-count-x: $grid-root-x
+        $stepper-count-y: $grid-root-y
+        $stepper-x: $offset-x / ($stepper-count-x - 1)
+        $stepper-y: $offset-y / ($stepper-count-y - 1)
+
+        flex-wrap: wrap
+        overflow: hidden
+        position: absolute
+        top: 0
+        left: 0
+        height: var(--collection-img-zoomed-height-desktop)
+        width: var(--collection-img-zoomed-width-desktop)
+        cursor: zoom-in
+        z-index: 200
+        display: flex
+          
+        &::hover
+          background-color: red
+        .grid-item 
+          height: calc(100% / $grid-root-x)
+          width: calc(100% / $grid-root-y)
+          z-index: 200
+        &.zoomed
+          .picture-artwork-slider
+              width: calc(100% * $zoom-factor)
+              height: calc(100% * $zoom-factor)
+              position: absolute
+              z-index: 150
+              object-fit: contain
+              background-color: black
+              opacity: 0
+          &:hover
+            cursor: zoom-out
+            @for $i from 1 through $grid-root-y
+
+              .grid-item:hover:nth-of-type(#{$grid-root-y}n + #{$i}) ~ img
+                left: calc(((#{$i} - 1) * #{$stepper-y}) * -1)
+                transition: all 0.55s
+              $t: (($i - 1) * 15) + 1
+              .grid-item:hover:nth-of-type(1n + #{$t}) ~ img
+                top: calc(((#{$i} - 1) * #{$stepper-x}) * -1)
+                transition: all 0.55s
+
+            .picture-artwork-slider
+              opacity: 1
+              transition: all 0.55s
+
+      #collection-popin-img-title
+        font-family: "Green Hostel"
+        height: var(--collection-img-zoomed-height-desktop)
+        text-align: right
+        position: absolute
+        left: 0px
+        top: 0px
+        box-sizing: border-box
+        font-weight: bold
+        font-size: var(--title-font-size)
+        display: flex
+        writing-mode: vertical-rl
+        scale: -1
+        margin: 0 -1px
+        z-index: 120
+        p
+          margin: 0
+          text-align: center
+          -webkit-text-stroke: 0.02em
+      #collection-popin-slider-group
+        width: var(--collection-img-zoomed-width-desktop)
+        height: var(--collection-img-zoomed-height-desktop)
+        .collection-popin-slider
+          width: var(--collection-img-zoomed-width-desktop)
+          height: var(--collection-img-zoomed-height-desktop)
+          position: absolute
+          display: none
+          overflow: hidden
+          &.selected
+            display: flex
+              
+          .picture-artwork-slider
+            position: absolute
+            display: none
+            &[data-selected='first']
+              display: block
+            &[data-selected='true']
+              display: block
+              animation: anim-slide 2s 1
+            &[data-selected='waited']
+              display: block
+              animation: anim-unslide 2s 1
+
+          img
+            object-fit: contain
+            width: var(--collection-img-zoomed-width-desktop)
+            height: var(--collection-img-zoomed-height-desktop)
+
+    #collection-popin-artworks
+      width: var(--collection-img-zoomed-width-desktop)
+      display: flex
+      justify-content: center
+      .artwork 
+        margin: 25px
+        img
+          width: 100px
+          height: 150px
+          filter: grayscale(100%)
+          transition: ease-out 0.5s
+          cursor: pointer
+          object-fit: cover
+          object-position: center
+          &:hover, &.selected
+            filter: grayscale(0%)
+          &.selected
+            cursor: default
+    h3, h4
+      margin: 0
+      text-align: center
+      font-family: 'Green Hostel'
+    h6
+      margin: 5%
+      text-align: justify
+      
+  #collections 
+    display: flex
+    width: 90%
+    overflow-x: hidden
+    height: 800px
+    margin: 0 5%
+    transition: 1s ease
+    .slider
+      display: flex
+      position: relative
+    .collection
+      margin: 10px
+    .picture-collection
+      width: var(--collection-img-width-desktop)
+      height: var(--collection-img-height-desktop)
+      filter: grayscale(100%)
+      object-fit: cover
+      object-position: center
+      transition: ease-out 0.5s
+      cursor: pointer
+      &:hover
+        filter: grayscale(0%)
+        transition: ease-out 0.5s
+      &.collection-opened
+        width: var(--collection-img-zoomed-width-desktop)
+        height: var(--collection-img-zoomed-height-desktop)
+        filter: grayscale(0%)
+        transition: ease-out 0.5s
+
+
+@font-face
+  font-family: 'Green Hostel'
+  src: url('/fonts/GreenHostel/GreenHostel.eot')
+  src: url('/fonts/GreenHostel/GreenHostel.eot?#iefix') format('embedded-opentype'), url('/fonts/GreenHostel/GreenHostel.woff2') format('woff2'), url('/fonts/GreenHostel/GreenHostel.woff') format('woff')
+  font-weight: normal
+  font-style: normal
+  font-display: swap
+
+
+
+
+
+//
+/* ACCESSIBILITY */
+//
+
+@media screen and (prefers-color-scheme: dark)
+
+@media (prefers-contrast: high)
+
+
+@media screen and (prefers-reduced-motion: reduce) 
+  *
+    animation-duration: 0.001ms !important
+    animation-iteration-count: 1 !important
+    transition-duration: 0.001ms !important
+
+@media (inverted-colors)
+  img, video
+    filter: invert(100%)
